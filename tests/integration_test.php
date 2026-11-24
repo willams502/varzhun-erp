@@ -91,8 +91,10 @@ $newStatus = $pdo->query("SELECT access_status FROM saas_tenants WHERE id = 3")-
 assertTrue($newStatus === 'ativo', "Pagamento da mensalidade reativou acesso do Tenant 3");
 
 // Limpa banco de teste
+$pdo = null;
 Database::resetConnection();
+gc_collect_cycles();
 if (file_exists(SQLITE_PATH)) {
-    unlink(SQLITE_PATH);
+    @unlink(SQLITE_PATH);
 }
 echo "\nTodos os testes de integração passaram com sucesso!\n";

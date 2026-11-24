@@ -1,10 +1,10 @@
 <?php
 /**
- * Configuração central do Varzhun ERP 3D
+ * Configuração central do Vharzun ERP 3D
  * Suporta MySQL (InfinityFree / Produção) e SQLite (Desenvolvimento / Testes locais).
  */
 
-define('APP_NAME', 'Varzhun 3D ERP');
+define('APP_NAME', 'Vharzun 3D ERP');
 define('APP_VERSION', '1.0.0');
 define('BASE_PATH', dirname(__DIR__));
 define('UPLOAD_DIR', BASE_PATH . '/uploads');
@@ -28,6 +28,14 @@ if (!defined('DB_DRIVER')) {
         || str_starts_with($host, '127.0.0.1');
 
     define('DB_DRIVER', $isLocal ? 'sqlite' : 'mysql');
+}
+
+if (!defined('DEMO_MODE')) {
+    $host = $_SERVER['HTTP_HOST'] ?? 'cli';
+    $isLocal = php_sapi_name() === 'cli'
+        || str_starts_with($host, 'localhost')
+        || str_starts_with($host, '127.0.0.1');
+    define('DEMO_MODE', $isLocal);
 }
 
 if (!defined('DB_HOST')) define('DB_HOST', getenv('DB_HOST') ?: 'localhost');

@@ -10,7 +10,7 @@ function asset_v(string $path): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varzhun 3D ERP — Gestão Profissional para Impressão 3D</title>
+    <title>Vharzun 3D ERP — Gestão Profissional para Impressão 3D</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset_v('assets/css/app.css') ?>">
@@ -28,31 +28,32 @@ function asset_v(string $path): string {
             <div class="login-brand">
                 <div class="brand-icon"><i data-lucide="box"></i></div>
                 <div>
-                    <h1>Varzhun 3D ERP</h1>
+                    <h1>Vharzun 3D ERP</h1>
                     <p>Gestão Completa para Impressão 3D</p>
                 </div>
             </div>
             <form id="login-form">
                 <div class="form-group">
                     <label for="login-email">E-mail</label>
-                    <input type="email" id="login-email" required placeholder="seu@email.com.br" value="admin@vharzun3d.com.br">
+                    <input type="email" id="login-email" required placeholder="seu@email.com.br">
                 </div>
                 <div class="form-group">
                     <label for="login-password">Senha</label>
-                    <input type="password" id="login-password" required placeholder="••••••••" value="admin123">
+                    <input type="password" id="login-password" required placeholder="••••••••">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Entrar no Sistema</button>
             </form>
+            <?php if (defined('DEMO_MODE') && DEMO_MODE): ?>
             <div class="login-demo-box">
-                <small><strong>Contas de acesso rápido (Demonstração):</strong></small>
+                <small><strong>Contas de acesso rápido (Ambiente Local / Demonstração):</strong></small>
                 <div class="demo-pills">
-                    <button type="button" class="chip" onclick="fillDemoLogin('admin@vharzun3d.com.br','admin123')">Admin</button>
                     <button type="button" class="chip" onclick="fillDemoLogin('gerente@vharzun3d.com.br','gerente123')">Gerente</button>
                     <button type="button" class="chip" onclick="fillDemoLogin('financeiro@vharzun3d.com.br','financeiro123')">Financeiro</button>
                     <button type="button" class="chip" onclick="fillDemoLogin('producao@vharzun3d.com.br','producao123')">Produção</button>
                     <button type="button" class="chip" onclick="fillDemoLogin('vendas@vharzun3d.com.br','vendas123')">Vendedor</button>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -62,7 +63,7 @@ function asset_v(string $path): string {
             <div class="sidebar-header">
                 <div class="brand">
                     <div class="brand-icon"><i data-lucide="box"></i></div>
-                    <span class="brand-text">Varzhun <strong>3D</strong></span>
+                    <span class="brand-text">Vharzun <strong>3D</strong></span>
                 </div>
                 <button id="sidebar-toggle" class="icon-btn" title="Recolher menu"><i data-lucide="panel-left-close"></i></button>
             </div>

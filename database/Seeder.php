@@ -9,12 +9,15 @@ class Seeder
         self::seedSaas($pdo);
 
         // 1. Usuários padrão (5 níveis de acesso)
+        $isDemo = defined('DEMO_MODE') && DEMO_MODE;
+        $adminPass = getenv('SEED_ADMIN_PASS') ?: ($isDemo ? 'admin123' : bin2hex(random_bytes(8)));
+        $defaultPass = $isDemo ? null : bin2hex(random_bytes(8));
         $users = [
-            ['Administrador Varzhun', 'admin@vharzun3d.com.br', 'admin123', 'admin'],
-            ['Mariana Gerente', 'gerente@vharzun3d.com.br', 'gerente123', 'gerente'],
-            ['Carlos Financeiro', 'financeiro@vharzun3d.com.br', 'financeiro123', 'financeiro'],
-            ['Lucas Produção', 'producao@vharzun3d.com.br', 'producao123', 'producao'],
-            ['Ana Vendas', 'vendas@vharzun3d.com.br', 'vendas123', 'vendedor'],
+            ['Administrador Vharzun', 'admin@vharzun3d.com.br', $adminPass, 'admin'],
+            ['Mariana Gerente', 'gerente@vharzun3d.com.br', $defaultPass ?? 'gerente123', 'gerente'],
+            ['Carlos Financeiro', 'financeiro@vharzun3d.com.br', $defaultPass ?? 'financeiro123', 'financeiro'],
+            ['Lucas Produção', 'producao@vharzun3d.com.br', $defaultPass ?? 'producao123', 'producao'],
+            ['Ana Vendas', 'vendas@vharzun3d.com.br', $defaultPass ?? 'vendas123', 'vendedor'],
         ];
         $stmtUser = $pdo->prepare("INSERT INTO users (name, email, password_hash, role, active) VALUES (?, ?, ?, ?, 1)");
         foreach ($users as $u) {
@@ -23,7 +26,7 @@ class Seeder
 
         // 2. Configurações da empresa
         $settings = [
-            'company_name' => 'Varzhun Impressão 3D Ltda',
+            'company_name' => 'Vharzun Impressão 3D Ltda',
             'company_cnpj' => '45.123.456/0001-89',
             'company_phone' => '(11) 99999-3300',
             'company_email' => 'contato@vharzun3d.com.br',

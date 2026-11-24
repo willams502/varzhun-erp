@@ -1,4 +1,4 @@
-﻿*.sqlite
+*.sqlite
 *.db
 uploads/
 .DS_Store
