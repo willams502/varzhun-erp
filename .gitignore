@@ -1,0 +1,8 @@
+﻿*.sqlite
+*.db
+uploads/
+.DS_Store
+.env
+.env.*
+!.env.example
+config/config.local.php

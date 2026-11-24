@@ -1,0 +1,11 @@
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^database/.*\.sqlite$ - [F,L]
+</IfModule>
+
+<FilesMatch "\.(sqlite|db|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
